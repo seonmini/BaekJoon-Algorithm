@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int test = scan.nextInt();
+        int[][] arr = new int[2][41];
+        
+        arr[0][0] = 1;
+        arr[1][1] = 1;
+        
+        for(int i=1;i<=test;i++){
+            fibonacci(arr,scan.nextInt());
+        }
+        
+        scan.close();
+    } 
+    
+    public static void fibonacci(int[][] arr,int num){
+        if((num>=2)&&(arr[0][num]==0)&&(arr[1][num]==0)){
+            for(int i=2;i<=num;i++){
+            arr[0][i] = arr[0][i-1] + arr[0][i-2];  
+            arr[1][i] = arr[1][i-1] + arr[1][i-2];   
+            }
+        }
+        System.out.println(arr[0][num]+" "+arr[1][num]);
+    }
+}
