@@ -1,0 +1,53 @@
+package zzann;
+
+import java.util.*;
+
+public class Remotecontrol{
+    public static void main(String[] args){
+       final int now = 100;
+    
+       int channel, fail, min;
+       int[] check = new int[10];
+       
+       Scanner scan = new Scanner(System.in);
+       
+       channel = scan.nextInt();
+       fail = scan.nextInt();
+       
+       min = Math.abs(channel-now);
+       
+       for(int i=1;i<=fail;i++) {
+         check[scan.nextInt()] = 1;
+       }
+       
+      for(int i=0;i<=1000000;i++) {
+    	  int cnt = find(i,check);
+    	  
+    	  if(cnt>0) {
+        	 if(min>(Math.abs(channel-i)+cnt)) 
+        		 min = Math.abs(channel-i)+cnt;
+    	  }  
+    	  else continue;
+      }
+      System.out.println(min);
+    }
+    
+    public static int find(int channel, int[] check) {
+    	int cnt = 0;
+    	
+    	if(channel==0) {
+    		return check[channel]==1 ? -1 : 1;
+    	}
+    	else {
+        	while(channel>0) {
+        		if(check[channel%10]==0) {
+        			channel /= 10;
+        			cnt++;
+        		}
+        		else return -1;
+        	}
+    	}
+    	return cnt;
+    }
+}
+
