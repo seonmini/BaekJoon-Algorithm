@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Main{
+    public static void main(String[] args){
+    	
+    	Scanner scan = new Scanner(System.in);
+    	
+    	int num = scan.nextInt();
+    	int[] arr = new int[num+1];
+    	int[] dp = new int[1101];
+    	
+    	for(int i=1;i<=num;i++) {
+    		arr[i] = scan.nextInt();
+    		dp[i] = 10000;
+    	}
+    	
+    	dp[1]=0;
+    	for(int i=1;i<arr.length;i++) {
+    		for(int j=i+1;j<=i+arr[i];j++) {
+    			if(dp[j]>dp[i]+1) 
+    				dp[j] = dp[i]+1;	
+    		}
+    	}
+    	
+    	if(dp[num]==10000) System.out.println("-1");
+    	else System.out.println(dp[num]);
+	}
+}
